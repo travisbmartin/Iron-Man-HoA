@@ -1,5 +1,5 @@
-# Raspberry Pi Pico: http://educ8s.tv/part/RaspberryPiPico
-# OLED DISPLAY: https://educ8s.tv/part/OLED096
+# Code to be added to every Raspberry Pi Pico driving an Armor Bay
+# Code used is to be ran in CircuitPython
 
 from random import randrange
 import time
@@ -78,8 +78,8 @@ source_index = 0
 while True:
     display.root_group = group
     group.x = 32
-    while station_enable.value == True:
-        if seconds == 60: #3
+    while station_enable.value == False:
+        if seconds == 3:
             seconds = 0
             minutes = minutes + 1
             minutes2 = minutes2 + 1
