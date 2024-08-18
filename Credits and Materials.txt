@@ -27,6 +27,10 @@ https://www.python.org/
 Code for the Raspberry Pi Pico is programmed for CircuitPython.  Please note that different boards require different versions of CircuitPython, so please read the instructions on their site to pick the right version.
 https://circuitpython.org/
 
+Images
+=======
+Arc Reactor Vector - https://onlineresize.club/2021-club.html
+
 Materials/Shopping List 
 =======================
 
