@@ -1,0 +1,64 @@
+In the process of making this displaly (or is it a diorama?), I've been all over the Internet looking for solutions and help.  This is a list of pages/items/code that I used.
+
+I will updare this often probably.  I'm susre I've foorgootten some things.
+
+3D Files
+==========
+
+Building the 3D stl files was done using TinkerCad.
+
+http://www.tinkercad.com
+
+Original design and dimensions first started with WayGroovy's "Iron Man Hall of Armor".
+https://www.tinkercad.com/things/l37zKctDpl7-iron-man-hall-of-armor
+
+Honeycomb side pattern remixed from ines.lopez's "panel"
+https://www.tinkercad.com/things/dchcW7EJQ0m-panel
+
+Front Panel uses elemants from ZDP189's "NASA Apollo Mission Control Panels"
+https://www.tinkercad.com/things/6omLFvvjeiZ-nasa-apollo-mission-control-panels
+
+Code
+=========
+
+Code for the Raspberry Pi portion is programmed in Python 3.
+https://www.python.org/
+
+Code for the Raspberry Pi Pico is programmed for CircuitPython.  Please note that different boards require different versions of CircuitPython, so please read the instructions on their site to pick the right version.
+https://circuitpython.org/
+
+Materials/Shopping List 
+=======================
+
+3D Filamment was Sunlu Matte Grey PLA
+#D Resin was Anycubic Clear Red and ABS-like Grey
+
+Module wsa painted with Rustoleum Matte Nickel
+Module Metal Floor was painted with Rustoleum ? Copper 
+Panel was painted with ? Steel
+
+Raspberry Pi 4B\
+  CanaKit Raspberry Pi 4 4GB Starter PRO Kit - 4GB RAM - https://www.amazon.com/dp/B07V5JTMV9?ref=ppx_yo2ov_dt_b_product_details&th=1
+  GeeekPi Micro GPIO Terminal Block Breakout Board Module for Raspberry Pi, GPIO Expansion Board Micro Connector for Raspberry Pi 4B/3B+/3B/2B/Pi Zero/Pi Zero W/Pi Zero 2 W - https://www.amazon.com/dp/B09535KQSC?psc=1&ref=ppx_yo2ov_dt_b_product_details
+
+Raspberry Pi Pico 
+  https://www.digikey.com/en/products/detail/raspberry-pi/SC0915/13624793?so=87519441&content=productdetail_US&mkt_tok=MDI4LVNYSy01MDcAAAGT_Hz2C85wV7kR0VCJkznc2-GIn2Jl0KRUgiLCOoPUxGClVsc8wrzRl5ujup0qqdQVtU_efaHZHGxLV_jJked-SQG67Dah3ykOwwnrbAnH
+  (You can buy versions with Wifi embedded on the board, but for the build it's not needed)
+
+Adafruit LED Sequins
+  Ruby Red - https://www.adafruit.com/product/1755
+  Emerald Green - https://www.adafruit.com/product/1756
+  Royal Blue - https://www.adafruit.com/product/1757
+  Warm White - https://www.adafruit.com/product/1758
+  
+OLED Screen
+  Weewooday 5 Pieces 0.96 Inch OLED Module 12864 128x64 Driver IIC I2C Serial Self-Luminous Display Board Compatible with Arduino/Raspberry PI(Blue) - https://www.amazon.com/dp/B09JWLDK9F?ref=ppx_yo2ov_dt_b_product_details&th=1
+
+Cat 5 Network Cable - for wiring the LEDs and Screens to the Picos.  I removed the main sheath and used the twisted pair wires inside.
+
+Magnets
+  120 Pieces 3mm D x 4mm H DIY Refrigerators Magnets Multi-Use for Whiteboard Map Screen Door Bulletin Boards - https://www.amazon.com/dp/B075PM7HZ6?psc=1&ref=ppx_yo2ov_dt_b_product_details
+  These fit in the peg holes of  the Marvel Legends figure nicely.  Then the figures have a little more encouragemnt to attach the metal platform in the armor bays.
+
+Metal
+  Hillman® 24" x 24" Steel Perforated Sheet Metal - 16 Gauge - https://www.menards.com/main/hardware/sheet-metal-rods/hillman-reg-24-x-24-steel-perforated-sheet-metal-16-gauge/11796/p-1444432411130-c-9215.htm?exp=false
