@@ -5,6 +5,7 @@ from random import randrange
 import time
 import board
 import busio
+import pwmio
 import displayio
 import digitalio
 import adafruit_displayio_ssd1306
@@ -39,6 +40,9 @@ minute_pins[0].direction = digitalio.Direction.OUTPUT
 minute_pins[1].direction = digitalio.Direction.OUTPUT
 minute_pins[2].direction = digitalio.Direction.OUTPUT
 minute_pins[3].direction = digitalio.Direction.OUTPUT
+
+penta_light = digitalio.DigitalInOut(board.GP22)
+penta_light.direction = digitalio.Direction.OUTPUT
 
 for i in range(0,4):
     ten_pins[i].value = False
@@ -78,8 +82,9 @@ source_index = 0
 while True:
     display.root_group = group
     group.x = 32
-    while station_enable.value == False:
-        if seconds == 3:
+    while station_enable.value == True:
+        penta_light = True
+        if seconds == 60:
             seconds = 0
             minutes = minutes + 1
             minutes2 = minutes2 + 1
@@ -92,9 +97,9 @@ while True:
     
         for i in range(0,4):
             minute_pins[i].value = int(minones[i])
-            print(int(minones[i]))
+            print(int(minones[i])) #debug.  Delete after not needing the Shell for debugging
     
-        print()
+        print() #debug.  Spacing Shell output.  Delete after not needing the Shell for debugging
     
         if minutes < 10:
             ten_pins[0].value = False
@@ -102,46 +107,45 @@ while True:
             ten_pins[2].value = False
             ten_pins[3].value = False
             ten_pins[4].value = False
-            print(0)
+            print(0) #debug.  Delete after not needing the Shell for debugging
         elif minutes >= 10 and minutes < 20:
             ten_pins[0].value = True
             ten_pins[1].value = False
             ten_pins[2].value = False
             ten_pins[3].value = False
             ten_pins[4].value = False
-            print(1)
+            print(1) #debug.  Delete after not needing the Shell for debugging
         elif minutes >= 20 and minutes < 30:
             ten_pins[0].value = True
             ten_pins[1].value = False
             ten_pins[2].value = False
             ten_pins[3].value = True
             ten_pins[4].value = False
-            print(1,2)
+            print(1,2) #debug.  Delete after not needing the Shell for debugging
         elif minutes >= 30 and minutes < 40:
             ten_pins[0].value = True
             ten_pins[1].value = True
             ten_pins[2].value = False
             ten_pins[3].value = True
             ten_pins[4].value = False
-            print(1,2,3)
+            print(1,2,3) #debug.  Delete after not needing the Shell for debugging
         elif minutes >= 40 and minutes < 50:
             ten_pins[0].value = True
             ten_pins[1].value = True
             ten_pins[2].value = True
             ten_pins[3].value = True
             ten_pins[4].value = False
-            print(1,2,3,4)
+            print(1,2,3,4) #debug.  Delete after not needing the Shell for debugging
         elif minutes >= 50:
             ten_pins[0].value = True
             ten_pins[1].value = True
             ten_pins[2].value = True
             ten_pins[3].value = True
             ten_pins[4].value = True
-            print(1,2,3,4,5)
-        print()
+            print(1,2,3,4,5) #debug.  Delete after not needing the Shell for debugging
+        print() #debug.  Delete after not needing the Shell for debugging
         if minutes >= 60:
             minutes = 0
-        
         
         for i in range(1,10):
             rand = randrange(1,20,1)
@@ -150,7 +154,7 @@ while True:
                 source_index += 1
             time.sleep(.05)
         seconds = seconds + .5
-        print(seconds)
+        print(seconds) #debug.  Delete after not needing the Shell for debugging
 
 for i in range(0,4):
     ten_pins[i].value = False
