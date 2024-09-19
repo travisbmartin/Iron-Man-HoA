@@ -1,5 +1,5 @@
-# Code to be added to every Raspberry Pi Pico driving an Armor Bay
-# Code used is to be ran in CircuitPython
+# Raspberry Pi Pico: http://educ8s.tv/part/RaspberryPiPico
+# OLED DISPLAY: https://educ8s.tv/part/OLED096
 
 from random import randrange
 import time
@@ -15,40 +15,29 @@ import bitmaptools
 ten_pins = ['1','1','1','1','1']
 minute_pins = ['1','1','1','1']
 
-station_enable = digitalio.DigitalInOut(board.GP28)
+station_enable = digitalio.DigitalInOut(board.GP18)
 station_enable.direction = digitalio.Direction.INPUT
 station_enable.pull = digitalio.Pull.DOWN
 
-ten_pins[0] = digitalio.DigitalInOut(board.GP2)
-ten_pins[1] = digitalio.DigitalInOut(board.GP3)
-ten_pins[2] = digitalio.DigitalInOut(board.GP4)
-ten_pins[3] = digitalio.DigitalInOut(board.GP5)
-ten_pins[4] = digitalio.DigitalInOut(board.GP6)
+ten_pins[0] = pwmio.PWMOut(board.GP2, frequency = 1000)
+ten_pins[1] = pwmio.PWMOut(board.GP3, frequency = 1000)
+ten_pins[2] = pwmio.PWMOut(board.GP4, frequency = 1000)
+ten_pins[3] = pwmio.PWMOut(board.GP5, frequency = 1000)
+ten_pins[4] = pwmio.PWMOut(board.GP6, frequency = 1000)
 
-minute_pins[0] = digitalio.DigitalInOut(board.GP7)
-minute_pins[1] = digitalio.DigitalInOut(board.GP8)
-minute_pins[2] = digitalio.DigitalInOut(board.GP9)
-minute_pins[3] = digitalio.DigitalInOut(board.GP10)
-
-ten_pins[0].direction = digitalio.Direction.OUTPUT
-ten_pins[1].direction = digitalio.Direction.OUTPUT
-ten_pins[2].direction = digitalio.Direction.OUTPUT
-ten_pins[3].direction = digitalio.Direction.OUTPUT
-ten_pins[4].direction = digitalio.Direction.OUTPUT
-
-minute_pins[0].direction = digitalio.Direction.OUTPUT
-minute_pins[1].direction = digitalio.Direction.OUTPUT
-minute_pins[2].direction = digitalio.Direction.OUTPUT
-minute_pins[3].direction = digitalio.Direction.OUTPUT
+minute_pins[0] = pwmio.PWMOut(board.GP7, frequency = 1000)
+minute_pins[1] = pwmio.PWMOut(board.GP8, frequency = 1000)
+minute_pins[2] = pwmio.PWMOut(board.GP9, frequency = 1000)
+minute_pins[3] = pwmio.PWMOut(board.GP10, frequency = 1000)
 
 penta_light = digitalio.DigitalInOut(board.GP22)
 penta_light.direction = digitalio.Direction.OUTPUT
 
 for i in range(0,4):
-    ten_pins[i].value = False
+    ten_pins[i].duty_cycle = 0
 
 for i in range(0,3):
-    minute_pins[i].value = False
+    minute_pins[i].duty_cycle = 0
 
 seconds = 0
 minutes = 0
@@ -82,8 +71,8 @@ source_index = 0
 while True:
     display.root_group = group
     group.x = 32
+    penta_light.value = True
     while station_enable.value == True:
-        penta_light = True
         if seconds == 60:
             seconds = 0
             minutes = minutes + 1
@@ -93,60 +82,108 @@ while True:
             minutes2 = minutes2 - 10
 
     #prep bits
-        minones = '{0:04b}'.format(int(minutes2))
-    
-        for i in range(0,4):
-            minute_pins[i].value = int(minones[i])
-            print(int(minones[i])) #debug.  Delete after not needing the Shell for debugging
-    
-        print() #debug.  Spacing Shell output.  Delete after not needing the Shell for debugging
-    
+        if minutes2 == 0:
+            minute_pins[0].duty_cycle = 0
+            minute_pins[1].duty_cycle = 0
+            minute_pins[2].duty_cycle = 0
+            minute_pins[3].duty_cycle = 0
+
+        elif minutes2 == 1:
+            minute_pins[0].duty_cycle = 750
+            minute_pins[1].duty_cycle = 0
+            minute_pins[2].duty_cycle = 0
+            minute_pins[3].duty_cycle = 0
+            
+        elif minutes2 == 2:
+            minute_pins[0].duty_cycle = 0
+            minute_pins[1].duty_cycle = 750
+            minute_pins[2].duty_cycle = 0
+            minute_pins[3].duty_cycle = 0
+
+        elif minutes2 == 3:
+            minute_pins[0].duty_cycle = 750
+            minute_pins[1].duty_cycle = 750
+            minute_pins[2].duty_cycle = 0
+            minute_pins[3].duty_cycle = 0
+            
+        elif minutes2 == 4:
+            minute_pins[0].duty_cycle = 0
+            minute_pins[1].duty_cycle = 0
+            minute_pins[2].duty_cycle = 750
+            minute_pins[3].duty_cycle = 0
+            
+        elif minutes2 == 5:
+            minute_pins[0].duty_cycle = 750
+            minute_pins[1].duty_cycle = 0
+            minute_pins[2].duty_cycle = 750
+            minute_pins[3].duty_cycle = 0
+            
+        elif minutes2 == 6:
+            minute_pins[0].duty_cycle = 0
+            minute_pins[1].duty_cycle = 750
+            minute_pins[2].duty_cycle = 750
+            minute_pins[3].duty_cycle = 0
+            
+        elif minutes2 == 7:
+            minute_pins[0].duty_cycle = 750
+            minute_pins[1].duty_cycle = 750
+            minute_pins[2].duty_cycle = 750
+            minute_pins[3].duty_cycle = 0
+            
+        elif minutes2 == 8:
+            minute_pins[0].duty_cycle = 0
+            minute_pins[1].duty_cycle = 0
+            minute_pins[2].duty_cycle = 0
+            minute_pins[3].duty_cycle = 750
+ 
+        elif minutes2 == 9:
+            minute_pins[0].duty_cycle = 750
+            minute_pins[1].duty_cycle = 0
+            minute_pins[2].duty_cycle = 0
+            minute_pins[3].duty_cycle = 750
+            
         if minutes < 10:
-            ten_pins[0].value = False
-            ten_pins[1].value = False
-            ten_pins[2].value = False
-            ten_pins[3].value = False
-            ten_pins[4].value = False
-            print(0) #debug.  Delete after not needing the Shell for debugging
+            ten_pins[0].duty_cycle = 0
+            ten_pins[1].duty_cycle = 0
+            ten_pins[2].duty_cycle = 0
+            ten_pins[3].duty_cycle = 0
+            ten_pins[4].duty_cycle = 0
+
         elif minutes >= 10 and minutes < 20:
-            ten_pins[0].value = True
-            ten_pins[1].value = False
-            ten_pins[2].value = False
-            ten_pins[3].value = False
-            ten_pins[4].value = False
-            print(1) #debug.  Delete after not needing the Shell for debugging
+            ten_pins[0].duty_cycle = 750
+            ten_pins[1].duty_cycle = 0
+            ten_pins[2].duty_cycle = 0
+            ten_pins[3].duty_cycle = 0
+            ten_pins[4].duty_cycle = 0
+
         elif minutes >= 20 and minutes < 30:
-            ten_pins[0].value = True
-            ten_pins[1].value = False
-            ten_pins[2].value = False
-            ten_pins[3].value = True
-            ten_pins[4].value = False
-            print(1,2) #debug.  Delete after not needing the Shell for debugging
+            ten_pins[0].duty_cycle = 750
+            ten_pins[1].duty_cycle = 750
+            ten_pins[2].duty_cycle = 0
+            ten_pins[3].duty_cycle = 0
+            ten_pins[4].duty_cycle = 0
+
         elif minutes >= 30 and minutes < 40:
-            ten_pins[0].value = True
-            ten_pins[1].value = True
-            ten_pins[2].value = False
-            ten_pins[3].value = True
-            ten_pins[4].value = False
-            print(1,2,3) #debug.  Delete after not needing the Shell for debugging
+            ten_pins[0].duty_cycle = 750
+            ten_pins[1].duty_cycle = 750
+            ten_pins[2].duty_cycle = 750
+            ten_pins[3].duty_cycle = 0
+            ten_pins[4].duty_cycle = 0
+            
         elif minutes >= 40 and minutes < 50:
-            ten_pins[0].value = True
-            ten_pins[1].value = True
-            ten_pins[2].value = True
-            ten_pins[3].value = True
-            ten_pins[4].value = False
-            print(1,2,3,4) #debug.  Delete after not needing the Shell for debugging
+            ten_pins[0].duty_cycle = 750
+            ten_pins[1].duty_cycle = 750
+            ten_pins[2].duty_cycle = 750
+            ten_pins[3].duty_cycle = 750
+            ten_pins[4].duty_cycle = 0
+
         elif minutes >= 50:
-            ten_pins[0].value = True
-            ten_pins[1].value = True
-            ten_pins[2].value = True
-            ten_pins[3].value = True
-            ten_pins[4].value = True
-            print(1,2,3,4,5) #debug.  Delete after not needing the Shell for debugging
-        print() #debug.  Delete after not needing the Shell for debugging
-        if minutes >= 60:
-            minutes = 0
-        
+            ten_pins[0].duty_cycle = 750
+            ten_pins[1].duty_cycle = 750
+            ten_pins[2].duty_cycle = 750
+            ten_pins[3].duty_cycle = 750
+            ten_pins[4].duty_cycle = 750
+
         for i in range(1,10):
             rand = randrange(1,20,1)
             if rand == 3:
@@ -154,10 +191,18 @@ while True:
                 source_index += 1
             time.sleep(.05)
         seconds = seconds + .5
-        print(seconds) #debug.  Delete after not needing the Shell for debugging
 
-for i in range(0,4):
-    ten_pins[i].value = False
-
-for i in range(0,3):
-    minute_pins[i].value = False
+    ten_pins[0].duty_cycle = 0
+    ten_pins[1].duty_cycle = 0
+    ten_pins[2].duty_cycle = 0
+    ten_pins[3].duty_cycle = 0
+    ten_pins[4].duty_cycle = 0
+    
+    minute_pins[0].duty_cycle = 0
+    minute_pins[1].duty_cycle = 0
+    minute_pins[2].duty_cycle = 0
+    minute_pins[3].duty_cycle = 0
+    
+    seconds = 0
+    minutes = 0
+    minutes2 = 0
