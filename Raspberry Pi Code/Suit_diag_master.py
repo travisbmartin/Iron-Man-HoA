@@ -1,26 +1,178 @@
-#Raspberry Pi main code to enable and disable the Armor Bay Picos
-#Code is ran in Python 3
+#!/usr/bin/env python3
 
 import time
 import RPi.GPIO as GPIO
 
-hours_list = [31,33,35,8,10,12,16,18,24,26,32,36]
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+
+hours_list = [6,13,19,14,18,23,25,20,9,21,11,17]
 
 #pinout setups
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(hours_list, GPIO.OUT, initial=GPIO.LOW)
-
+GPIO.setup(hours_list, GPIO.OUT)
+GPIO.output(hours_list, GPIO.LOW)
 while True:
     hour = time.strftime('%H')
-    
-    if int(hour) > 12:
+
+    if int(hour) >= 12:
         hour = int(hour)-12
-        
-    #hour
+
     suit = int(hour)
     suit_pin = hours_list[suit]
-    print(suit)
-    print(suit_pin)
-    
-    GPIO.output(hours_list, GPIO.LOW)
-    GPIO.output(suit_pin, GPIO.HIGH)
+
+    if hour == 0:
+        GPIO.output(hours_list[0], GPIO.HIGH)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 1:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.HIGH)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 2:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.HIGH)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 3:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.HIGH)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 4:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.HIGH)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 5:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.HIGH)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 6:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.HIGH)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 7:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.HIGH)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 8:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.HIGH)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 9:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.HIGH)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 10:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.HIGH)
+        GPIO.output(hours_list[11], GPIO.LOW)
+    elif hour == 11:
+        GPIO.output(hours_list[0], GPIO.LOW)
+        GPIO.output(hours_list[1], GPIO.LOW)
+        GPIO.output(hours_list[2], GPIO.LOW)
+        GPIO.output(hours_list[3], GPIO.LOW)
+        GPIO.output(hours_list[4], GPIO.LOW)
+        GPIO.output(hours_list[5], GPIO.LOW)
+        GPIO.output(hours_list[6], GPIO.LOW)
+        GPIO.output(hours_list[7], GPIO.LOW)
+        GPIO.output(hours_list[8], GPIO.LOW)
+        GPIO.output(hours_list[9], GPIO.LOW)
+        GPIO.output(hours_list[10], GPIO.LOW)
+        GPIO.output(hours_list[11], GPIO.HIGH)
