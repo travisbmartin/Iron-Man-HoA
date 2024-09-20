@@ -1,6 +1,6 @@
 In the process of making this displaly (or is it a diorama?), I've been all over the Internet looking for solutions and help.  This is a list of pages/items/code that I used.
 
-I will updare this often probably.  I'm susre I've foorgootten some things.
+I will update this often probably.  I'm sure I've forgotten some things.
 
 3D Files
 ==========
@@ -35,13 +35,13 @@ Materials/Shopping List
 =======================
 
 3D Filamment was Sunlu Matte Grey PLA
-#D Resin was Anycubic Clear Red and ABS-like Grey
+3D Resin was Anycubic Clear Red and ABS-like Grey.  Anycubic Transparent was used for the Penta Light glasses
 
-Module wsa painted with Rustoleum Matte Nickel
+Module was painted with Rustoleum Matte Nickel
 Module Metal Floor was painted with Rustoleum ? Copper 
 Panel was painted with ? Steel
 
-Raspberry Pi 4B\
+Raspberry Pi 4B
   CanaKit Raspberry Pi 4 4GB Starter PRO Kit - 4GB RAM - https://www.amazon.com/dp/B07V5JTMV9?ref=ppx_yo2ov_dt_b_product_details&th=1
   GeeekPi Micro GPIO Terminal Block Breakout Board Module for Raspberry Pi, GPIO Expansion Board Micro Connector for Raspberry Pi 4B/3B+/3B/2B/Pi Zero/Pi Zero W/Pi Zero 2 W - https://www.amazon.com/dp/B09535KQSC?psc=1&ref=ppx_yo2ov_dt_b_product_details
 
