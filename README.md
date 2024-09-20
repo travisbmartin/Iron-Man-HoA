@@ -20,19 +20,19 @@ Plans are to also include a sound module to run on every hour.
 To make the Raspberry Pi code autostart on boot:
 At the top of the Python code meant to run on the pi, there is this shebang line
 
-  #!/usr/bin/env python
+  <b><i>#!/usr/bin/env python</i></b>
 
 Then, from the pi's terminal, enter the following to change the file attributes:
 
-  sudo chmod +x suit_diag_master.py
+  <b><i>sudo chmod +x suit_diag_master.py</i></b>
 
 Next, pull up the Cron file
 
-  sudo crontab -e
+  <b><i>sudo crontab -e</i></b>
 
 And enter the following to run at boot.
 
-  @reboot sudo /home/Path/To/Script/suit_diag_master.py 2>&1 | tee -a /home/Path/To/Script/fault
+  <b><i>@reboot sudo /home/Path/To/Script/suit_diag_master.py 2>&1 | tee -a /home/Path/To/Script/fault</i></b>
 
 This will also create a fault file that can be opened in nano or another text editor.  If the script doesn't run at boot, check this file.
 
