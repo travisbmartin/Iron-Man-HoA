@@ -33,11 +33,16 @@ minute_pins[3] = pwmio.PWMOut(board.GP10, frequency = 1000)
 penta_light = digitalio.DigitalInOut(board.GP22)
 penta_light.direction = digitalio.Direction.OUTPUT
 
-for i in range(0,4):
-    ten_pins[i].duty_cycle = 0
-
-for i in range(0,3):
-    minute_pins[i].duty_cycle = 0
+ten_pins[0].duty_cycle = 0
+ten_pins[1].duty_cycle = 0
+ten_pins[2].duty_cycle = 0
+ten_pins[3].duty_cycle = 0
+ten_pins[4].duty_cycle = 0
+    
+minute_pins[0].duty_cycle = 0
+minute_pins[1].duty_cycle = 0
+minute_pins[2].duty_cycle = 0
+minute_pins[3].duty_cycle = 0
 
 seconds = 0
 minutes = 0
