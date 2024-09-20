@@ -13,3 +13,26 @@ An OLED screen is also ran, showing a rotating image.
 The image does not rotate smoothly, imitating the diagnostic system as lagging while processing.
 
 Plans are to also include a sound module to run on every hour.
+
+
+To make the Raspberry Pi code autostart on boot:
+At the top of the Python code meant to run on the pi, there is this shebang line
+
+  #!/usr/bin/env python
+
+Then, from the pi's terminal, enter the following to change the file attributes:
+
+  sudo chmod +x suit_diag_master.py
+
+Next, pull up the Cron file
+
+  sudo crontab -e
+
+And enter the following to run at boot.
+
+  @reboot sudo /home/Path/To/Script/suit_diag_master.py 2>&1 | tee -a /home/Path/To/Script/fault
+
+This will also create a fault file that can be opened in nano or another text editor.  If the script doesn't run at boot, check this file.
+
+
+The Pico boards will automatically run code.py in its onboard memory when it powers up. 
