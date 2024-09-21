@@ -7,15 +7,22 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 hours_list = [6,13,19,14,18,23,25,20,9,21,11,17]
+HOMER_pin =  12
 
 #pinout setups
-GPIO.setup(hours_list, GPIO.OUT)
-GPIO.output(hours_list, GPIO.LOW)
-while True:
-    hour = time.strftime('%H')
+GPIO.setup(hours_list, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(HOMER_pin, GPIO.OUT)
 
-    if int(hour) >= 12:
-        hour = int(hour)-12
+HOMER = GPIO.PWM(HOMER_pin, 1000)
+HOMER.start(0)
+PWM_direction = 1
+
+while True:
+    hour_string = time.strftime('%H')
+    hour = int(hour_string)
+    
+    if hour >= 12:
+        hour = hour-12
 
     suit = int(hour)
     suit_pin = hours_list[suit]
@@ -176,3 +183,16 @@ while True:
         GPIO.output(hours_list[9], GPIO.LOW)
         GPIO.output(hours_list[10], GPIO.LOW)
         GPIO.output(hours_list[11], GPIO.HIGH)
+        
+    if PWM_direction == 1:
+        for duty_cycle in range(0,101,1):
+            HOMER.ChangeDutyCycle(duty_cycle)
+            time.sleep(.01)
+            #print(duty_cycle)
+        PWM_direction = 0
+    elif PWM_direction == 0:
+        for duty_cycle in range(100,-1,-1):
+            HOMER.ChangeDutyCycle(duty_cycle)
+            time.sleep(.01)
+            #print(duty_cycle)
+        PWM_direction = 1
