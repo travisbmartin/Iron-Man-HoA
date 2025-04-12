@@ -4,7 +4,7 @@
 <img src = "Pictures/20240916_155300.jpg">
 <br>
 <br>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/A_x1iFYDHM8?si=RvBQ5-6ppFc3EbKH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<video src="https://www.youtube.com/embed/A_x1iFYDHM8?si=RvBQ5-6ppFc3EbKH"  width=180/>
 <br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/XXk1AkZXeck?si=RajqUnmYgWLW9Xkh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <br>
