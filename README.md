@@ -4,7 +4,8 @@
 <img src = "Pictures/20240916_155300.jpg">
 <br>
 <br>
-(https://youtu.be/XXk1AkZXeck?si=E5ZWOEbQ6ujGXQaE)
+[![Video Title](https://img.youtube.com/vi/XXk1AkZXeck?si=E5ZWOEbQ6ujGXQaE/0.jpg)](https://youtu.be/XXk1AkZXeck?si=E5ZWOEbQ6ujGXQaE)
+()
 <br>
 (https://youtu.be/MWSStyxMDuw?si=DEylYLq6dNMHR4hE)
 <br>
