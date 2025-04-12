@@ -4,11 +4,11 @@
 <img src = "Pictures/20240916_155300.jpg">
 <br>
 <br>
-[![Video Title](https://img.youtube.com/vi/XXk1AkZXeck/0.jpg)](https://www.youtube.com/watch?v=XXk1AkZXeck)
+[![Video Title](https://img.youtube.com/vi/XXk1AkZXeck/0.jpg)] (https://www.youtube.com/watch?v=XXk1AkZXeck)
 <br>
-[![Video Title](https://img.youtube.com/vi/MWSStyxMDuw/0.jpg)](https://www.youtube.com/watch?v=MWSStyxMDuw)
+[![Video Title](https://img.youtube.com/vi/MWSStyxMDuw/0.jpg)] (https://www.youtube.com/watch?v=MWSStyxMDuw)
 <br>
-[![Video Title](https://img.youtube.com/vi/htXjz3oLDX0/0.jpg)](https://www.youtube.com/watch?v=htXjz3oLDX0)
+[![Video Title](https://img.youtube.com/vi/htXjz3oLDX0/0.jpg)] (https://www.youtube.com/watch?v=htXjz3oLDX0)
 <br>
 <br>
 File collection for a Marvel Legends scaled Iron Man Hall of Armor.
