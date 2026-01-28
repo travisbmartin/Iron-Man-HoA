@@ -47,3 +47,12 @@ This will also create a fault file that can be opened in nano or another text ed
 
 
 The Pico boards will automatically run code.py in its onboard memory when it powers up. 
+
+
+
+
+
+
+
+
+<i>This project is intended for the Maker community. I am happy for individuals to sell their custom builds or improve the design, but commercial use by large-scale manufacturers is not authorized without a separate agreement.</i>
