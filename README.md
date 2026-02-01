@@ -137,6 +137,17 @@ The LEDs are divided into "Tens of Minutes" and "Single Minutes" to act as a bin
 | LED 3 (4m) | GP9 | 4 Minutes (Bit 2) |
 | LED 4 (8m) | GP10 | 8 Minutes (Bit 3) |
 
+### Pico File Installation
+
+To get the code running, your Pico's `CIRCUITPY` drive needs to look like this:
+
+* `code.py` (The main script)
+* `arc_reactor_2.bmp` (The image file)
+* `lib/` (Folder containing the necessary libraries)
+* `adafruit_displayio_ssd1306.mpy`
+* `adafruit_imageload.mpy`
+* `adafruit_bus_device/`
+
 #### Overhead Lighting
 
 * **Bay Light:** GP22 (Pin 29). This pin is set to `True` whenever the Pico is active.
