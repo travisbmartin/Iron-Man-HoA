@@ -8,7 +8,7 @@ File collection for a Marvel Legends scaled Iron Man Hall of Armor.
 
 Designed to hold 12 Iron Man figures, with a replica H.O.M.E.R. panel and Elevator/Launch tube.
 
-Project is designed to be 3D printed easily.
+Project is designed to be 3D printed easily. Most of the bay parts are printed with FDM material, but I opted for resin printing to make HOMER, the front panels, and the ceilings.
 
 ## Demonstration
 
@@ -27,6 +27,8 @@ The project functions as a physical wall clock where each armor bay represents o
 * **OLED Display:** Shows a rotating Arc Reactor. *Note: The rotation is intentionally jittery to simulate a diagnostic system lagging while processing data.*
 * **Overhead Lighting:** Powers the bay's main spotlight via GP22.
 * **Ambient Effects:** A central "HOMER" light pulses slowly using PWM to simulate a standby heartbeat.
+
+Check the Pictures folder for a lot of WIP and finished shots that I think help with the build.
 
 ## 🕰️ Clock Logic (Minutes Display)
 
@@ -47,6 +49,121 @@ Each bay features a custom LED clock interface to display the minutes:
 * **Magnets:** 3mm D x 4mm H Neodymium magnets (glued to Marvel Legends' feet).
 * **Flooring:** 16-Gauge Perforated Steel Sheet (24" x 24").
 * **Wiring:** Twisted pair wires harvested from Cat 5 Network Cables.
+
+# Hall of Armor: Electrical & Wiring Guide
+
+This guide outlines the wiring architecture for the Iron Man Hall of Armor diorama. The system uses a **Raspberry Pi 4B** as the master clock controller and **12 Raspberry Pi Picos** (one for each "hour" or armor bay) to handle local lighting and OLED displays.
+
+**Note:** The wiring portion of this project can quickly become a mess. To make the wires fit through the holes in the armor bay I used single strands of CAT5 cable. Try to be uniform in what color you use where, and be aware that you'll have to double up using a color in places. Definiately write out a wiring plan before going for it. Also, arrange the groups of LEDS in a way that you can solder all of the grounds to one wire. The strip of four is easy, but the circle of five can be tricky, and I arranged mine to the inside of the circle shape to solder them together.
+
+I've made wiring maps for the Pi and the Picos in Fritzing, but they aren't very good.
+
+I reccommend wiring up a single pico and loading the code in as a test bed. That way you can practice how you want to handle the wiring.
+
+## 1. System Architecture
+
+* **Master (Raspberry Pi 4B):** Runs `Suit_diag_master.py`. It tracks the real-world time and sends an "Enable" signal to the Pico corresponding to the current hour.
+
+* **Clients (12x Raspberry Pi Picos):** Run `code.py` (CircuitPython). Each Pico waits for a signal on its `GP18` pin. When high, it activates its local "Hall of Armor" animations, OLED arc reactor, and binary minute clock.
+
+## 2. Master Raspberry Pi 4B Wiring
+
+The Pi 4 manages the 12 Picos by toggling their `RUN` or `Enable` states via GPIO.
+
+### Master Pinout (BCM Mode)
+
+Based on `Suit_diag_master.py`, the following pins on the Pi 4 connect to the **Enable/GP18** pin of each Pico:
+
+| Hour / Bay | Pi 4 GPIO (BCM) | Physical Pin |
+| ----- | ----- | ----- |
+| **12 (0)** | GPIO 6 | Pin 31 |
+| **1** | GPIO 13 | Pin 33 |
+| **2** | GPIO 19 | Pin 35 |
+| **3** | GPIO 14 | Pin 8 |
+| **4** | GPIO 18 | Pin 12 |
+| **5** | GPIO 23 | Pin 16 |
+| **6** | GPIO 25 | Pin 22 |
+| **7** | GPIO 20 | Pin 38 |
+| **8** | GPIO 9 | Pin 21 |
+| **9** | GPIO 21 | Pin 40 |
+| **10** | GPIO 11 | Pin 23 |
+| **11** | GPIO 17 | Pin 11 |
+| **HOMER (PWM)** | GPIO 12 | Pin 32 |
+
+**Common Rail:** Ensure all Picos and the Raspberry Pi share a **Common Ground (GND)**.
+
+## 3. Raspberry Pi Pico (Per Bay) Wiring
+
+Each Pico is responsible for one bay. Refer to your `pico wiring.png` and `code.py` for these connections.
+
+### Power & Control Input
+
+* **VBUS/VSYS:** Connect to +5V (from Pi 4 or external power supply).
+
+* **GND:** Common Ground rail.
+
+* **Enable Signal (GP18):** Connect to the corresponding GPIO pin from the Master Pi 4 (see table above).
+
+### OLED Display (I2C)
+
+* **SDA:** GP0 (Pin 1)
+
+* **SCL:** GP1 (Pin 2)
+
+* **VCC:** 3.3V (Out from Pico)
+
+* **GND:** GND
+
+### LED Groups (PWM Controlled)
+
+The LEDs are divided into "Tens of Minutes" and "Single Minutes" to act as a binary/incremental clock.
+
+#### Tens of Minutes (GP2 - GP6)
+
+| LED | Pico Pin | Role |
+| ----- | ----- | ----- |
+| LED 1 (10m) | GP2 | 10 Minutes |
+| LED 2 (20m) | GP3 | 20 Minutes |
+| LED 3 (30m) | GP4 | 30 Minutes |
+| LED 4 (40m) | GP5 | 40 Minutes |
+| LED 5 (50m) | GP6 | 50 Minutes |
+
+#### Single Minutes (GP7 - GP10)
+
+| LED | Pico Pin | Role |
+| ----- | ----- | ----- |
+| LED 1 (1m) | GP7 | 1 Minute (Bit 0) |
+| LED 2 (2m) | GP8 | 2 Minutes (Bit 1) |
+| LED 3 (4m) | GP9 | 4 Minutes (Bit 2) |
+| LED 4 (8m) | GP10 | 8 Minutes (Bit 3) |
+
+#### Overhead Lighting
+
+* **Bay Light:** GP22 (Pin 29). This pin is set to `True` whenever the Pico is active.
+
+## 4. Hardware Tips
+
+### The "Cat 5" Trick
+
+As noted in the materials list, using the twisted pairs from a **Cat 5 network cable** is an excellent way to keep wiring clean.
+
+* Use one color (e.g., Orange/White-Orange) for I2C (SDA/SCL).
+
+* Use Blue/White-Blue for Power and Ground.
+
+* Keep the twists intact as long as possible to reduce signal interference over the distance of the diorama.
+
+### Magnet Mounting
+
+* The **3mm x 4mm magnets** should be glued into the feet of the Marvel Legends figures.
+
+* The **Perforated Steel Sheet** should be painted and then used as the flooring. This allows the figures to snap into place securely while maintaining the "industrial" look of the Hall of Armor.
+
+### Software Auto-Run
+
+**Raspberry Pi 4:** Add `python3 /path/to/Suit_diag_master.py &` to your `/etc/rc.local` or create a systemd service to ensure the clock starts on boot.
+
+**Picos:** Ensure the code is named `code.py`. CircuitPython automatically executes `code.py` whenever the board receives power or the `RUN` pin is toggled.
 
 ## 📂 Software & Setup
 
