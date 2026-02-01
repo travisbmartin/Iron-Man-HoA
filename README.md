@@ -1,6 +1,6 @@
-Iron Man Hall of Armor Diorama (or Overly Complicated Clock)
+<H1>Iron Man Hall of Armor Diorama (or Overly Complicated Clock)</H1>
 
-Well…Hasbro ain’t going to make a Hall Of Armor….I’ll just do it myself!
+<i>Well…Hasbro ain’t going to make a Hall Of Armor….I’ll just do it myself!</i>
 
 A fully functional, 12-bay Iron Man "Hall of Armor" diorama that doubles as a real-world clock. This project uses a Master/Client architecture with a Raspberry Pi 4 and 12 Raspberry Pi Picos to bring Tony Stark’s workshop to life.
 
@@ -13,14 +13,14 @@ A fully functional, 12-bay Iron Man "Hall of Armor" diorama that doubles as a re
 
 
 📺 Demonstration
-
+<CENTER>
 [![Watch the video](https://img.youtube.com/vi/XXk1AkZXeck/0.jpg)](https://www.youtube.com/watch?v=XXk1AkZXeck)
 <br>
 [![Watch the video](https://img.youtube.com/vi/MWSStyxMDuw/0.jpg)](https://www.youtube.com/watch?v=MWSStyxMDuw)
 <br>
 [![Watch the video](https://img.youtube.com/vi/htXjz3oLDX0/0.jpg)](https://www.youtube.com/watch?v=htXjz3oLDX0)
 <br>
-
+</CENTER>
 
 
 🚀 How it Works
