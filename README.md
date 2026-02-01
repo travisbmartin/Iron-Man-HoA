@@ -137,16 +137,6 @@ The LEDs are divided into "Tens of Minutes" and "Single Minutes" to act as a bin
 | LED 3 (4m) | GP9 | 4 Minutes (Bit 2) |
 | LED 4 (8m) | GP10 | 8 Minutes (Bit 3) |
 
-### Pico File Installation
-
-To get the code running, your Pico's `CIRCUITPY` drive needs to look like this:
-
-* `code.py` (The main script)
-* `arc_reactor_2.bmp` (The image file)
-* `lib/` (Folder containing the necessary libraries)
-* `adafruit_displayio_ssd1306.mpy`
-* `adafruit_imageload.mpy`
-* `adafruit_bus_device/`
 
 #### Overhead Lighting
 
@@ -193,6 +183,17 @@ Add the following line to the bottom (update the path to your script):
 *This creates a fault file in your directory. If the script doesn't run at boot, check this file.*
 
 #### Pico Setup Each Pico runs CircuitPython. The board will automatically execute code.py in its onboard memory upon receiving power or an enable signal. Please note that different boards require different versions of CircuitPython; refer to [circuitpython.org](https://www.google.com/search?q=https://circuitpython.org/) for the correct version.
+
+### Pico File Installation
+
+To get the code running, your Pico's `CIRCUITPY` drive needs to look like this:
+
+* `code.py` (The main script)
+* `arc_reactor_2.bmp` (The image file)
+* `lib/` (Folder containing the necessary libraries)
+* `adafruit_displayio_ssd1306.mpy`
+* `adafruit_imageload.mpy`
+* `adafruit_bus_device/`
 
 ## 📜 Credits & Attributions
 
